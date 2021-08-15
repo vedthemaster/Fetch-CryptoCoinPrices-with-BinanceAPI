@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+  Coin Prices
+  <h1 id="pricebtc"></h1>
+  <h1 id="priceeth"></h1>
+  <h1 id="pricexrp"></h1>
+  <h1 id="priceada"></h1>
+  <h1 id="pricesol"></h1>
+  <h1 id="pricebnb"></h1>
+  <h1 id="pricebch"></h1>
+  <div id="chart"></div>
+  <div id="candle"></div>
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+
+
+
+<script>
+
+let endpoint = 'https://api.binance.com';
+let querybtc = '/api/v3/ticker/price';
+let queryeth = '/api/v3/ticker/price';
+let queryxrp = '/api/v3/ticker/price';
+let queryada = '/api/v3/ticker/price';
+let querysol = '/api/v3/ticker/price';
+let querybnb = '/api/v3/ticker/price';
+let querybch = '/api/v3/ticker/price';
+
+querybtc += "?symbol=BTCUSDT";
+queryeth += "?symbol=ETHUSDT";
+queryxrp += "?symbol=XRPUSDT";
+queryada += "?symbol=ADAUSDT";
+querysol += "?symbol=SOLUSDT";
+querybnb += "?symbol=BNBUSDT";
+querybch += "?symbol=BCHUSDT";
+
+let urlbtc = endpoint + querybtc
+let urleth = endpoint + queryeth
+let urlxrp = endpoint + queryxrp
+let urlada = endpoint + queryada
+let urlsol = endpoint + querysol
+let urlbnb = endpoint + querybnb
+let urlbch = endpoint + querybch
+
+const ourRequestBTC = new XMLHttpRequest();
+const ourRequestETH = new XMLHttpRequest();
+const ourRequestXRP = new XMLHttpRequest();
+const ourRequestADA = new XMLHttpRequest();
+const ourRequestSOL = new XMLHttpRequest();
+const ourRequestBNB = new XMLHttpRequest();
+const ourRequestBCH = new XMLHttpRequest();
+
+
+async function btcticker(){
+	
+	ourRequestBTC.open('GET', urlbtc, true)
+	ourRequestBTC.onload = function () {
+		console.log(ourRequestBTC.responseText);
+		if (this.status === 200) {
+
+			let obj = JSON.parse(this.responseText);
+			console.log(obj);
+			let btcprice = document.getElementById('pricebtc')
+			str = "";
+			for (key in obj) {
+				str += `<span> ${obj[key]} </span>`;
+			} btcprice.innerHTML = str;
+		} else {
+			console.log("You messed up now")
+		}
+	}
+
+	ourRequestBTC.send();
+};
+
+btcticker();
+setInterval(btcticker,500);
+
+
+async function ethticker(){
+
+	ourRequestETH.open('GET', urleth, true)
+	ourRequestETH.onload = function () {
+		console.log(ourRequestETH.responseText);
+		if (this.status === 200) {
+			
+			let obj = JSON.parse(this.responseText);
+			console.log(obj);
+			let ethprice = document.getElementById('priceeth')
+			str = "";
+			for (key in obj) {
+				str += `<span> ${obj[key]} </span>`;
+			} ethprice.innerHTML = str;
+		} else {
+			console.log("You messed up now")
+		}
+	}
+	
+	ourRequestETH.send()
+};
+
+ethticker();
+setInterval(ethticker,500)
+
+
+async function xrpticker(){
+
+	ourRequestXRP.open('GET', urlxrp, true)
+	ourRequestXRP.onload = function () {
+		console.log(ourRequestXRP.responseText);
+		if (this.status === 200) {
+
+			let obj = JSON.parse(this.responseText);
+			console.log(obj);
+			let xrpprice = document.getElementById('pricexrp')
+			str = "";
+			for (key in obj) {
+				str += `<span> ${obj[key]} </span>`;
+			} xrpprice.innerHTML = str;
+		} else {
+			console.log("You messed up now")
+		}
+	}
+
+	ourRequestXRP.send()
+};
+
+
+xrpticker();
+setInterval(xrpticker,500);
+
+async function adaticker(){
+
+	ourRequestADA.open('GET', urlada, true)
+	ourRequestADA.onload = function () {
+		console.log(ourRequestADA.responseText);
+		if (this.status === 200) {
+
+			let obj = JSON.parse(this.responseText);
+			console.log(obj);
+			let adaprice = document.getElementById('priceada')
+			str = "";
+			for (key in obj) {
+				str += `<span> ${obj[key]} </span>`;
+			} adaprice.innerHTML = str;
+		} else {
+			console.log("You messed up now")
+		}
+	}
+
+	ourRequestADA.send()
+};
+
+adaticker();
+setInterval(adaticker,500);
+
+
+async function solticker(){
+
+	ourRequestSOL.open('GET', urlsol, true)
+	ourRequestSOL.onload = function () {
+		console.log(ourRequestSOL.responseText);
+		if (this.status === 200) {
+
+			let obj = JSON.parse(this.responseText);
+			console.log(obj);
+			let solprice = document.getElementById('pricesol')
+			str = "";
+			for (key in obj) {
+				str += `<span> ${obj[key]} </span>`;
+			} solprice.innerHTML = str;
+		} else {
+			console.log("You messed up now")
+		}
+	}
+
+	ourRequestSOL.send()
+};
+
+solticker();
+setInterval(solticker,500);
+
+async function bnbticker(){
+
+	ourRequestBNB.open('GET', urlbnb, true)
+	ourRequestBNB.onload = function () {
+		console.log(ourRequestBNB.responseText);
+		if (this.status === 200) {
+
+			let obj = JSON.parse(this.responseText);
+			console.log(obj);
+			let bnbprice = document.getElementById('pricebnb')
+			str = "";
+			for (key in obj) {
+				str += `<span> ${obj[key]} </span>`;
+			} bnbprice.innerHTML = str;
+		} else {
+			console.log("You messed up now")
+		}
+	}
+
+	ourRequestBNB.send()
+};
+
+bnbticker();
+setInterval(bnbticker,500);
+
+
+async function bchticker(){
+
+	ourRequestBCH.open('GET', urlbch, true)
+	ourRequestBCH.onload = function () {
+		console.log(ourRequestBCH.responseText);
+		if (this.status === 200) {
+
+			let obj = JSON.parse(this.responseText);
+			console.log(obj);
+			let bchprice = document.getElementById('pricebch')
+			str = "";
+			for (key in obj) {
+				str += `<span> ${obj[key]} </span>`;
+			} bchprice.innerHTML = str;
+		} else {
+			console.log("You messed up now")
+		}
+	}
+
+	ourRequestBCH.send()
+};
+bchticker();
+setInterval(bchticker,500);
+
+	
+</script>
+
+
+</html>
